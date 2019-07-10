@@ -22,10 +22,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   containerAlignTop: {
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'flex-start',
   },
   contentContainerStyle: {
+    flexGrow: 1,
     justifyContent: 'flex-end',
   },
   headerWrapper: {

@@ -520,19 +520,12 @@ class GiftedChat<TMessage extends IMessage = IMessage> extends React.Component<
     return value
   }
 
-  safeAreaIphoneX = (bottomOffset: number) => {
-    if (isIphoneX()) {
-      return bottomOffset === this._bottomOffset ? 33 : bottomOffset
-    }
-    return bottomOffset
-  }
-
   onKeyboardWillShow = (e: any) => {
     this.setIsTypingDisabled(true)
     this.setKeyboardHeight(
       e.endCoordinates ? e.endCoordinates.height : e.end.height,
     )
-    this.setBottomOffset(this.safeAreaIphoneX(this.props.bottomOffset!))
+    this.setBottomOffset(this.props.bottomOffset!)
     const newMessagesContainerHeight = this.getMessagesContainerHeightWithKeyboard()
     if (this.props.isAnimated === true) {
       Animated.timing(this.state.messagesContainerHeight!, {
@@ -773,16 +766,14 @@ class GiftedChat<TMessage extends IMessage = IMessage> extends React.Component<
   render() {
     if (this.state.isInitialized === true) {
       return (
-        <SafeAreaView style={styles.safeArea}>
-          <GiftedActionSheet
-            ref={(component: any) => (this._actionSheetRef = component)}
-          >
-            <View style={styles.container} onLayout={this.onMainViewLayout}>
-              {this.renderMessages()}
-              {this.renderInputToolbar()}
-            </View>
-          </GiftedActionSheet>
-        </SafeAreaView>
+        <GiftedActionSheet
+          ref={(component: any) => (this._actionSheetRef = component)}
+        >
+          <View style={styles.container} onLayout={this.onMainViewLayout}>
+            {this.renderMessages()}
+            {this.renderInputToolbar()}
+          </View>
+        </GiftedActionSheet>
       )
     }
     return (
@@ -795,9 +786,6 @@ class GiftedChat<TMessage extends IMessage = IMessage> extends React.Component<
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-  },
-  safeArea: {
     flex: 1,
   },
 })
