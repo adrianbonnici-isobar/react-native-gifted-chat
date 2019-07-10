@@ -7,13 +7,11 @@ import {
   View,
   StyleProp,
   ViewStyle,
-  SafeAreaView,
 } from 'react-native'
 
 import ActionSheet from '@expo/react-native-action-sheet'
 import moment from 'moment'
 import uuid from 'uuid'
-import { isIphoneX } from 'react-native-iphone-x-helper'
 
 import * as utils from './utils'
 import Actions from './Actions'
